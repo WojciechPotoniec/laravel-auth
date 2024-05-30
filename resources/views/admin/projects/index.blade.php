@@ -1,11 +1,8 @@
 @extends('layouts.app')
 
-
+@section('project')
 <div class="container">
     <ul class="navbar-nav list-unstyled">
-        <li class="nav-item my-4">
-            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
-        </li>
         @foreach ($projects as $project)
         <li>
             <h2>{{ $project->title }}</h2>
@@ -21,3 +18,4 @@
         @endforeach
     </ul>
 </div>
+@endsection

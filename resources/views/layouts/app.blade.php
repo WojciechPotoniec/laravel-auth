@@ -91,6 +91,8 @@
         <main class="">
             @yield('content')
         </main>
+
+        @yield('project')
     </div>
 </body>
 
