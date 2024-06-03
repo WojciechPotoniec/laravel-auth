@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -61,10 +62,10 @@ class ProjectController extends Controller
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
-        // DB::enableQueryLog();
-        $project->update($form_data);
-        //$query = DB::getQueryLog();
-        // dd($query);
+        // DB::enableQueryLog(); 
+        $project->update($form_data); // query da eseguire
+        // $query = DB::getQueryLog();
+        //  dd($query);
         return redirect()->route('admin.projects.show', $project->slug);
     }
 
