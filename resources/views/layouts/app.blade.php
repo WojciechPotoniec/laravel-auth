@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Boolpress') }}</title>
+    <title>{{ config('app.name', 'My Portfolio') }}</title>
 
 
     <!-- Fonts -->
@@ -29,7 +29,7 @@
                         <a href="{{ url('/') }}"
                             class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                             <span class="fs-5 d-none d-sm-inline">
-                                <i class="bi bi-box"> Boolpress</i>
+                                <i class="bi bi-box"> My Portfolio</i>
                             </span>
                         </a>
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
