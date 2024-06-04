@@ -6,7 +6,7 @@
     <div class="alert alert-success">{{session()->get('message')}}</div>
   @endif
   <div class="d-flex justify-content-between align-items-center py-4">
-    <h1>Posts</h1>
+    <h1>Projects</h1>
     <a href="{{route('admin.projects.create')}}" class="btn btn-danger">Create new post</a>
   </div>
 

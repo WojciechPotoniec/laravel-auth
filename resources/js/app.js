@@ -13,6 +13,7 @@ deleteSubmitButtons.forEach((button) => {
         event.preventDefault();
 
         const dataTitle = button.getAttribute("data-item-title");
+        const dataId = button.getAttribute("data-item-id");
 
         const modal = document.getElementById("deleteModal");
 
@@ -22,7 +23,7 @@ deleteSubmitButtons.forEach((button) => {
         const modalItemTitle = modal.querySelector("#modal-item-title");
         modalItemTitle.textContent = dataTitle;
 
-        const buttonDelete = modal.querySelector("button.btn-primary");
+        const buttonDelete = modal.querySelector("button.btn-danger");
 
         buttonDelete.addEventListener("click", () => {
             button.parentElement.submit();

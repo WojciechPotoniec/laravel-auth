@@ -5,7 +5,7 @@
 @section('content')
 <section>
     <h2>Create a new project</h2>
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Titolo</label>
