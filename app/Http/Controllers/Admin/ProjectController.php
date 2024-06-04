@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -18,7 +19,7 @@ class ProjectController extends Controller
     {
         // $projects = Project::all();
         $projects = Project::paginate(3);
-        
+
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -37,10 +38,12 @@ class ProjectController extends Controller
     {
         $form_data = $request->validated();
         $form_data['slug'] = Project::generateSlug($form_data['title']);
-        if($request->hasFile('image')){
-            $path_img = Storage::put('uploads', $request->image);
-        };
-        
+        if ($request->hasFile('image')) {
+            $name = $request->image->getClientOriginalName();
+            $path_img = Storage::putFileAs('uploads', $request->image, $name);
+            $form_data['image'] = $path_img;
+        }
+        ;
         $newPost = Project::create($form_data);
         return redirect()->route('admin.projects.show', $newPost->slug);
     }
@@ -70,11 +73,21 @@ class ProjectController extends Controller
         if ($project->title !== $form_data['title']) {
             $form_data['slug'] = Project::generateSlug($form_data['title']);
         }
+        if ($request->hasFile('image')) {
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
+            $name = $request->image->getClientOriginalName();
+            //dd($name);
+            $path = Storage::putFileAs('uploads', $request->image, $name);
+            $form_data['image'] = $path;
+        }
         // DB::enableQueryLog(); 
         $project->update($form_data); // query da eseguire
         // $query = DB::getQueryLog();
         //  dd($query);
         return redirect()->route('admin.projects.show', $project->slug);
+
     }
 
     /**
@@ -82,6 +95,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
         $project->delete();
         return redirect()->route('admin.projects.index')->with('message', $project->title . ' è stato eliminato');
     }
