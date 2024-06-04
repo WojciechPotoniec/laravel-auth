@@ -29,6 +29,7 @@ class UpdateProjectRequest extends FormRequest
                 'min:3',
                 Rule::unique('projects')->ignore($this->project->id),
             ],
+            'image' => 'nullable|max:255',
             'content' => 'nullable'
         ];
     }
@@ -40,6 +41,7 @@ class UpdateProjectRequest extends FormRequest
             'title.unique:projects' => 'Questo titolo esiste già!',
             'title.max' => 'Il titolo deve essere lungo massimo :max caratteri!',
             'title.min' => 'Il titolo deve essere lungo almeno :min caratteri!',
+            'image.max' => 'La URL deve essere lunga massimo :max caratteri!'
         ];
     }
 }
