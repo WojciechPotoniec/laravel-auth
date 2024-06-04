@@ -194,3 +194,50 @@ php artisan make:request StoreNome_ModelRequest
 ## creazione file di validazione dello update
 php artisan make:request UpdateNome_ModelRequest
 ```
+
+```bash
+
+#In config/filestystems.php 
+#Caricheremo i nostri file nella cartella storage/app/public
+# modifichiamo quindi e volendo anche env file modifica chiave FILESYSTEM_DRIVER=public
+'default' => env('FILESYSTEM_DRIVER', 'public'),
+
+#lanciare comando
+php artisan storage:link
+
+#salvare
+Storage::put('nomecartella', $data['image']); //ritorna il path
+
+#per visualizzare 
+<img src="{{ asset('storage/' . $post->cover_image) }}">
+....
+
+Route::fallback(function() {
+    return redirect()->route('admin.dashboard');
+});
+
+```
+## Relazioni
+```bash
+#migration di esempio 
+
+#up
+Schema::table('posts', function (Blueprint $table) {
+
+    $table->unsignedBigInteger('user_id');
+    $table->foreign('user_id')
+        ->references('id')
+        ->on('users')->cascadeOnDelete();
+});
+# shortcut
+	
+$table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+#down
+
+$table->dropForeign('posts_user_id_foreign');
+$table->dropColumn('user_id');
+
+#nei model
+
+```
