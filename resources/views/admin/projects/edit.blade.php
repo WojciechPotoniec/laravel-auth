@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Post: ' . $project->title)
+@section('title', 'Edit Project: ' . $project->title)
 
 @section('content')
 <section>
     <div class="d-flex justify-content-between align-items-center py-4">
-        <h2>Edit post: {{$project->title}}</h2>
+        <h2>Edit project: {{$project->title}}</h2>
         <a href="{{route('admin.projects.show', $project->slug)}}" class="btn btn-danger">Show project</a>
     </div>
 
