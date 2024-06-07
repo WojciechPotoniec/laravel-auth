@@ -16,7 +16,7 @@
             </form>
         </div>
     </div>
-    <p>{{$project->content}}</p>
+    <p>{!!$project->content!!}</p>
     <img src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}">
 </section>
 @include('partials.modal-delete')
